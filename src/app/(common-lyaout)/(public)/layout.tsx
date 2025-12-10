@@ -1,18 +1,16 @@
-import Footer from '@/components/shared/Footer/Footer';
-import Link from 'next/link';
+import Footer from '@/components/shared/Footer/Footer'; 
+import NavBar from '@/components/shared/NavBar/NavBar';
 import React from 'react';
 
-const PublicLayout = ({ children } : { children: React.ReactNode }) => {
+const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div> 
-            <div className='flex gap-3 bg-linear-to-br from-yellow-900/5 via-yellow-800/70 to-yellow-900/5 p-5'>
-                <Link href='/'>Home</Link>
-                <Link href='/event'>event</Link>
-                <Link href='/about'>about</Link>
-                <Link href='/service'>service</Link>
-                <Link href='/contact'>contact</Link>
+        <div>
+            <div className='h-20'>  
+                <NavBar></NavBar>
             </div>
-            {children}
+            <div className="min-h-[calc(100vh-250px)]">
+                {children}
+            </div>
             <Footer></Footer>
         </div>
     );

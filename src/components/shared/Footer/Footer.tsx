@@ -15,7 +15,7 @@ const Footer = () => {
                             src={logo} 
                             className='w-16'
                             />
-                            <span className="text-lg font-bold text-yellow-500">
+                            <span className="text-lg font-bold text-yellow-700/90">
                                <p>
                                  EVENT &<br />
                                 ENTERTAINMENT
@@ -76,7 +76,7 @@ const Footer = () => {
                 </div>
 
 
-                <div className="border-t border-neutral-200 dark:border-neutral-700 py-4 text-center text-sm ark:text-gray-400 text-yellow-500">
+                <div className="border-t border-neutral-200 dark:border-neutral-700 py-4 text-center text-sm ark:text-gray-400 text-yellow-700/90 font-medium">
                     © {new Date().getFullYear()} Event&Entertainment — All rights reserved.
                 </div>
             </footer>
