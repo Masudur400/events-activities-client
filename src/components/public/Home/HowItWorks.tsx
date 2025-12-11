@@ -31,7 +31,7 @@ export default function HowItWorks() {
   return (
     <section className="py-10 my-10 bg-gray-50 bg-linear-to-b dark:from-neutral-800 dark:to-neutral-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-yellow-700/90">
+        <h2 className="text-[30px] lg:text-[42px] font-bold leading-tight text-center mb-12 text-yellow-700/90">
           How It Works
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

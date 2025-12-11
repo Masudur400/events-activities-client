@@ -1,5 +1,5 @@
 "use client";
-
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -34,18 +34,26 @@ export default function HeroSection() {
 
                 {/* TEXT CONTENT */}
                 <div className="space-y-2 md:space-y-4 lg:space-y-6">
-                    <h1 className="text-[30px] lg:text-[42px] font-bold leading-tight">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1, duration: 0.7 }}
+                        className="  text-[30px] lg:text-[42px] font-bold leading-tight">
                         Explore Amazing <span className="text-yellow-700/90">Events</span> & Entertainment
-                    </h1>
+                    </motion.h1>
 
-                    <p className="text-gray-800 dark:text-gray-300">
+                    <motion.p
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1, duration: 0.7 }}
+                        className="text-gray-800 dark:text-gray-300">
                         Discover experiences near you — from workshops to concerts. Designed to make exploring events enjoyable and smooth.
-                    </p>
+                    </motion.p>
 
                     <Link href='/event'>
-                    <button className="lg:px-8 px-4 lg:py-3 py-2 bg-linear-to-br from-yellow-900/30 via-yellow-800/70 to-yellow-900/30 text-white text-lg rounded-2xl shadow transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:from-yellow-900/50 hover:via-yellow-800/90 hover:to-yellow-900/50">
-                        Start Exploring
-                    </button>
+                        <button className="lg:px-8 px-4 lg:py-3 py-2 bg-linear-to-br from-yellow-900/30 via-yellow-800/70 to-yellow-900/30 text-white text-lg rounded-2xl shadow transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:from-yellow-900/50 hover:via-yellow-800/90 hover:to-yellow-900/50">
+                            Start Exploring
+                        </button>
                     </Link>
                 </div>
 
