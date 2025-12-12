@@ -41,8 +41,9 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-12 container mx-auto md:px-6 px-2 bg-gray-50 dark:bg-neutral-900">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
+    <section className=" bg-gray-50 dark:bg-neutral-900">
+      <div className="py-12 container mx-auto md:px-6 px-2">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
         What <span className="text-yellow-700 dark:text-yellow-600">People Say</span>
       </h2>
 
@@ -78,6 +79,7 @@ export default function Testimonials() {
             See All Testimonials
           </button>
         </Link>
+      </div>
       </div>
     </section>
   );
