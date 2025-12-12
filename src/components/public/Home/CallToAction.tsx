@@ -33,7 +33,7 @@ export default function CallToAction() {
                         data-aos-delay="50"
                         data-aos-duration="1000"
                         className="text-[30px] lg:text-[42px] font-bold leading-tight text-gray-900 dark:text-white lg:mb-7 mb-2 max-sm:mt-5">
-                        Ready to <span className="text-yellow-700/90">Elevate</span> Your Experience?
+                        Ready to <span className="text-yellow-700/90 dark:text-yellow-600">Elevate</span> Your Experience?
                     </h2>
                     <p
                         data-aos="fade-up"

@@ -39,7 +39,7 @@ export default function HeroSection() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1, duration: 0.7 }}
                         className="  text-[30px] lg:text-[42px] font-bold leading-tight">
-                        Explore Amazing <span className="text-yellow-700/90">Events</span> & Entertainment
+                        Explore Amazing <span className="text-yellow-700/90 dark:text-yellow-600">Events</span> & Entertainment
                     </motion.h1>
 
                     <motion.p

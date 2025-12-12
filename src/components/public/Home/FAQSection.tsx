@@ -48,7 +48,7 @@ export default function FAQSection() {
 
       <div className="container mx-auto px-4 md:px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-center dark:text-white mb-12">
-          Frequently <span className="text-yellow-700/90">Asked Questions</span>
+          Frequently <span className="text-yellow-700/90 dark:text-yellow-600">Asked Questions</span>
         </h2>
 
         <div className="max-w-3xl mx-auto space-y-4">
@@ -57,7 +57,7 @@ export default function FAQSection() {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ amount: 0.2 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="bg-white dark:bg-neutral-800 rounded-xl shadow-md overflow-hidden"
             >

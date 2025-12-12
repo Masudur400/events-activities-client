@@ -1,4 +1,8 @@
-"use client";
+"use client"; 
+
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Image from "next/image";
 import engagement from '../../../../public/images/Engagement.png'
 import birthday from '../../../../public/images/Birthday.png'
@@ -38,15 +42,22 @@ const events = [
 ];
 
 export default function UpcomingEvents() {
+    useEffect(() => {
+            AOS.init();
+        }, []);
     return (
         <section className="py-12 container mx-auto md:px-6 px-2">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-                Upcoming <span className="text-yellow-700">Events</span>
+                Upcoming <span className="text-yellow-700 dark:text-yellow-600">Events</span>
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {events.map((event, index) => (
                     <div
+                    data-aos="fade-zoom-in"
+                        data-aos-offset="200"
+                        data-aos-delay="50"
+                        data-aos-duration="1000"
                         key={index}
                         className="bg-white dark:bg-neutral-900 rounded-xl shadow-md overflow-hidden group hover:shadow-lg transition-all"
                     >
