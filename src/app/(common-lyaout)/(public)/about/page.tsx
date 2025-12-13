@@ -1,8 +1,10 @@
+import About from "@/components/public/About/About";
+
  
 const AboutPage = () => {
     return (
         <div>
-            about page
+            <About></About>
         </div>
     );
 };

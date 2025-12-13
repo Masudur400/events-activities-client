@@ -3,7 +3,6 @@
 import * as React from 'react'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
-
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -13,9 +12,15 @@ import {
 } from '@/components/ui/dropdown-menu'
 
 export function ModeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
 
-  // resolvedTheme ensures client-side theme
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null // SSR mismatch avoid
+
   const currentTheme = resolvedTheme || 'light'
 
   return (

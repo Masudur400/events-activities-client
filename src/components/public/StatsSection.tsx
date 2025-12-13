@@ -50,7 +50,7 @@ function AnimatedStat({ value, label }: any) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Detect when element enters viewport
+ 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,7 +58,6 @@ function AnimatedStat({ value, label }: any) {
           if (entry.isIntersecting) {
             setIsVisible(true);
           } else {
-            // Reset when leaving viewport
             setIsVisible(false);
             setCount(0);
           }
@@ -71,13 +70,13 @@ function AnimatedStat({ value, label }: any) {
     return () => observer.disconnect();
   }, []);
 
-  // Count-up animation (restarts every scroll enter)
+  
   useEffect(() => {
     if (!isVisible) return;
 
     let start = 0;
     const end = value;
-    const duration = 2000;
+    const duration = 3000;
     const increment = end / (duration / 16);
 
     const timer = setInterval(() => {
@@ -86,11 +85,17 @@ function AnimatedStat({ value, label }: any) {
         start = end;
         clearInterval(timer);
       }
-      setCount(Number(start.toFixed(0)));
+
+      
+      if (label === "Average Rating") {
+        setCount(Number(start.toFixed(1)));
+      } else {
+        setCount(Math.floor(start));
+      }
     }, 16);
 
     return () => clearInterval(timer);
-  }, [isVisible, value]);
+  }, [isVisible, value, label]);
 
   return (
     <motion.div
@@ -112,7 +117,7 @@ function AnimatedStat({ value, label }: any) {
     >
       <p className="text-3xl lg:text-5xl font-extrabold text-yellow-700/90 dark:text-yellow-600 drop-shadow-lg">
         {count}
-        {label === "Average Rating" ? "" : "+"}
+        {label !== "Average Rating" ? "+" : ""}
       </p>
       <p className="mt-3 text-base md:text-lg text-gray-500 dark:text-gray-200 font-medium">
         {label}
@@ -120,3 +125,4 @@ function AnimatedStat({ value, label }: any) {
     </motion.div>
   );
 }
+

@@ -1,11 +1,11 @@
 
-import CallToAction from './CallToAction';
-import FAQSection from './FAQSection';
-import HeroSection from './HeroSection';
-import HowItWorks from './HowItWorks';
-import StatsSection from './StatsSection';
-import Testimonials from './Testimonials';
-import UpcomingEvents from './UpcomingEvents';
+import CallToAction from '../CallToAction';
+import FAQSection from '../FAQSection';
+import HeroSection from '../HeroSection';
+import HowItWorks from '../HowItWorks'; 
+import StatsSection from '../StatsSection';
+import Testimonials from '../Testimonials';
+import UpcomingEvents from '../UpcomingEvents';
 
 const Home = () => {
     return (

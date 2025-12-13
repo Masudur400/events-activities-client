@@ -1,8 +1,10 @@
+import Services from "@/components/public/Service/Service";
+
  
 const ServicePage = () => {
     return (
         <div>
-            service page
+            <Services></Services>
         </div>
     );
 };

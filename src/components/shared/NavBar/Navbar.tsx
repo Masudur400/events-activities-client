@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
@@ -10,6 +10,18 @@ import { MdLogout } from "react-icons/md";
 import logo from '../../../../public/images/event.logo-2.png'
 import { ModeToggle } from '@/components/ModeToggle'
 import Avatar from 'react-avatar'
+
+interface IUser {
+  name: string;
+  photo?: string; // URL of profile photo (optional)
+}
+
+const user: IUser = {
+  name: "Masudur Rahman",
+  photo: "https://example.com/profile.jpg", // যদি photo থাকে
+};
+
+
 
 export default function NavBar() {
   const [open, setOpen] = useState(false)
@@ -64,8 +76,8 @@ export default function NavBar() {
           <div className="relative">
             {/* <Avatar name={name?.charAt(0)} src={photo} alt='img' className="rounded-full" size="45" onClick={() => setDropdownOpen(!dropdownOpen)}></Avatar> */}
             <Avatar
-              name='u'
-              src='d'
+              name={user.name}
+              src={user.photo}
               alt='img'
               size="45"
               className="rounded-full cursor-pointer border dark:border-gray-600"
