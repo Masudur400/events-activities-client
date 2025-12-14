@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import highLightImg from "../../../../public/images/faqbg.png";
+import highLightImg from "../../../public/images/faqbg.png";
 
 export default function StatsSection() {
   const stats = [

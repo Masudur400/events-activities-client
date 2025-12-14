@@ -39,26 +39,26 @@ export default function Services() {
             <section className="relative py-10 my-10 text-center bg-linear-to-b from-yellow-50 to-white dark:from-neutral-800 dark:to-neutral-900">
                 <div className="px-4 md:px-6">
                     <motion.h1
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    className="text-3xl md:text-5xl font-bold mb-4"
-                >
-                    We Make Your <span className="text-yellow-700/90 dark:text-yellow-600">Events</span> Unforgettable
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    className="text-lg md:text-xl max-w-xl mx-auto"
-                >
-                    From planning to execution, we provide full-service event management for all occasions.
-                </motion.p>
-                <Link href='/event'>
-                    <button className="lg:px-8 px-4 lg:py-3 py-2 my-5 bg-linear-to-br from-yellow-900/30 via-yellow-800/70 to-yellow-900/30 text-white text-lg rounded-2xl shadow transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:from-yellow-900/50 hover:via-yellow-800/90 hover:to-yellow-900/50">
-                        Book Now
-                    </button>
-                </Link>
+                        initial={{ opacity: 0, y: -20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                        className="text-3xl md:text-5xl font-bold mb-4"
+                    >
+                        We Make Your <span className="text-yellow-700/90 dark:text-yellow-600">Events</span> Unforgettable
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                        className="text-lg md:text-xl max-w-xl mx-auto"
+                    >
+                        From planning to execution, we provide full-service event management for all occasions.
+                    </motion.p>
+                    <Link href='/event'>
+                        <button className="lg:px-8 px-4 lg:py-3 py-2 my-5 bg-linear-to-br from-yellow-900/30 via-yellow-800/70 to-yellow-900/30 text-white text-lg rounded-2xl shadow transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:from-yellow-900/50 hover:via-yellow-800/90 hover:to-yellow-900/50">
+                            Book Now
+                        </button>
+                    </Link>
                 </div>
             </section>
 
@@ -75,7 +75,8 @@ export default function Services() {
                         >
                             <Image
                                 src={service.img}
-                                alt={service.title}
+                                alt={service.title}  
+                                loading="eager"
                                 className="h-[420px] w-full object-cover transition duration-500 group-hover:brightness-110"
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/30 to-transparent" />
@@ -112,7 +113,11 @@ export default function Services() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {portfolio.map((img, i) => (
                         <motion.div key={i} whileHover={{ scale: 1.02 }} className="rounded-xl overflow-hidden shadow-lg">
-                            <Image src={img} alt={`Portfolio ${i + 1}`} className="w-full h-64 object-cover transition duration-500" />
+                            <Image
+                                src={img}
+                                alt={`Portfolio ${i + 1}`}  
+                                loading="eager"
+                                className="w-full h-64 object-cover transition duration-500" />
                         </motion.div>
                     ))}
                 </div>
@@ -120,26 +125,26 @@ export default function Services() {
 
             {/* Testimonials Section */}
             <section className="py-24  bg-linear-to-b from-yellow-50 to-white dark:from-neutral-800 dark:to-neutral-900">
-               <div className="px-4 md:px-6">
-                 <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">What Our <span className="text-yellow-700/90 dark:text-yellow-600">Clients</span> Say</h2>
-                <div className="container mx-auto px-6 grid md:grid-cols-3 gap-10 text-center">
-                    {testimonials.map((t, i) => (
-                        <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.2 }} className="p-6 bg-white dark:bg-neutral-700 rounded-xl shadow-lg">
-                            <p className="mb-4">"{t.text}"</p>
-                            <h4 className="font-semibold text-yellow-700/90 dark:text-yellow-600">{t.name}</h4>
-                            <p className="text-sm text-gray-500 dark:text-gray-200">{t.role}</p>
-                        </motion.div>
-                    ))}
+                <div className="px-4 md:px-6">
+                    <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">What Our <span className="text-yellow-700/90 dark:text-yellow-600">Clients</span> Say</h2>
+                    <div className="container mx-auto px-6 grid md:grid-cols-3 gap-10 text-center">
+                        {testimonials.map((t, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.2 }} className="p-6 bg-white dark:bg-neutral-700 rounded-xl shadow-lg">
+                                <p className="mb-4">"{t.text}"</p>
+                                <h4 className="font-semibold text-yellow-700/90 dark:text-yellow-600">{t.name}</h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-200">{t.role}</p>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
-               </div>
             </section>
 
             {/* Call to Action Section */}
             <section className="py-24 my-20  text-center bg-gray-100 dark:bg-neutral-800">
                 <div className="px-4 md:px-6">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to <span className="text-yellow-700/90 dark:text-yellow-600">Plan Your</span> Event?</h2>
-                <p className="text-lg md:text-xl mb-6">Contact us today and make your event unforgettable!</p>
-                <Link href="/contact">
+                    <p className="text-lg md:text-xl mb-6">Contact us today and make your event unforgettable!</p>
+                    <Link href="/contact">
                         <button className="lg:px-8 px-4 lg:py-3 py-2 bg-linear-to-br from-yellow-900/30 via-yellow-800/70 to-yellow-900/30 text-white text-lg rounded-2xl shadow transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:from-yellow-900/50 hover:via-yellow-800/90 hover:to-yellow-900/50">
                             Contact Us
                         </button>

@@ -3,15 +3,15 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import banner1 from "../../../../public/images/home-banner-4.png";
-import banner2 from "../../../../public/images/home-banner-5.png";
-import banner3 from "../../../../public/images/home-banner-6.png";
-import banner4 from "../../../../public/images/home-banner-7.png";
+import banner1 from "../../../public/images/home-banner-4.png";
+import banner2 from "../../../public/images/home-banner-5.png";
+import banner3 from "../../../public/images/home-banner-6.png";
+import banner4 from "../../../public/images/home-banner-7.png";
 
 import Link from "next/link";
 
 export default function HeroSection() {
-    const sliderImages = [banner1, banner2, banner3,banner4];
+    const sliderImages = [banner1, banner2, banner3, banner4];
     const [current, setCurrent] = useState(0);
     const [fade, setFade] = useState(false);
 
@@ -63,7 +63,8 @@ export default function HeroSection() {
                 <div className="relative w-full mb-6 md:mb-0">
                     <Image
                         src={sliderImages[current]}
-                        alt="Hero Slide"
+                        alt="Hero Slide"  
+                        loading="eager"
                         className={`md:rounded-xl rounded-md  shadow-xl w-full transition-opacity duration-700 ${fade ? "opacity-0" : "opacity-100"}`}
                     />
                 </div>

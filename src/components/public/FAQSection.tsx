@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import faqBg from "../../../../public/images/faqbg.png"; 
+import faqBg from "../../../public/images/faqbg.png";
 
 const faqs = [
   {
@@ -39,10 +39,10 @@ export default function FAQSection() {
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src={faqBg}
-          alt="FAQ Background"
-          fill
-          className="object-cover opacity-30"
+          src={faqBg} 
+          alt="FAQ Background" 
+        fill  
+          className="object-cover opacity-30 w-full"
         />
       </div>
 

@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import service1 from "../../../../public/images/service1.png";
-import service2 from "../../../../public/images/service2.png";
-import service3 from "../../../../public/images/service3.png";
-import service4 from "../../../../public/images/service4.png";
+import service1 from "../../../public/images/service1.png";
+import service2 from "../../../public/images/service2.png";
+import service3 from "../../../public/images/service3.png";
+import service4 from "../../../public/images/service4.png";
 
 const services = [
   {
@@ -55,7 +55,8 @@ export default function ServicesSection() {
             >
               <Image
                 src={service.img}
-                alt={service.title} 
+                alt={service.title}  
+                loading="eager"
                 className="h-[420px] object-cover transition duration-500 group-hover:brightness-110"
               />
 

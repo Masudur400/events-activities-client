@@ -1,8 +1,8 @@
 import Image from "next/image";
-import searchImg from "../../../../public/images/search.png";
-import bookImg from "../../../../public/images/booking.png";
-import attendImg from "../../../../public/images/attend.png";
-import shareImg from "../../../../public/images/share.png";
+import searchImg from "../../../public/images/search.png";
+import bookImg from "../../../public/images/booking.png";
+import attendImg from "../../../public/images/attend.png";
+import shareImg from "../../../public/images/share.png";
 
 export default function HowItWorks() {
   const steps = [
@@ -43,7 +43,8 @@ export default function HowItWorks() {
               <div className="mb-4 relative overflow-hidden rounded-lg">
                 <Image
                   src={step.img}
-                  alt={step.title}
+                  alt={step.title}  
+                  loading="eager"
                   className="object-contain w-full h-full transform transition-transform duration-500 group-hover:scale-110"
                 />
               </div>

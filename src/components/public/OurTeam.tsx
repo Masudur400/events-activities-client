@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import team1 from "../../../../public/images/team1.png";
-import team2 from "../../../../public/images/team2.png";
-import team3 from "../../../../public/images/team3.png";
-import team4 from "../../../../public/images/team4.png";
+import team1 from "../../../public/images/team1.png";
+import team2 from "../../../public/images/team2.png";
+import team3 from "../../../public/images/team3.png";
+import team4 from "../../../public/images/team4.png";
 
 const team = [
   {
@@ -39,8 +39,8 @@ export default function OurTeam() {
   return (
     <section className="py-10 my-10 bg-linear-to-b from-yellow-50 to-white dark:from-neutral-800 dark:to-neutral-900">
       <div className="container mx-auto px-6">
-        <motion.h2 
-        initial={{ opacity: 0, y: -20 }}
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
@@ -64,7 +64,8 @@ export default function OurTeam() {
               <div className="relative w-36 h-36 mx-auto mb-6 rounded-full overflow-hidden ring-4 ring-yellow-500/40">
                 <Image
                   src={member.img}
-                  alt={member.name}
+                  alt={member.name}  
+                  loading="eager"
                   className="object-cover"
                 />
               </div>

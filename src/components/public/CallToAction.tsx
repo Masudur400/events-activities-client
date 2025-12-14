@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Image from "next/image"
 import Link from "next/link"
-import ctaImage from "../../../../public/images/call-to-action-1.png"
+import ctaImage from "../../../public/images/call-to-action-1.png"
 
 export default function CallToAction() {
     useEffect(() => {
@@ -18,7 +18,8 @@ export default function CallToAction() {
                 {/* Image */}
                 <div className="flex-1">
                     <Image
-                        src={ctaImage}
+                        src={ctaImage} 
+                        loading="eager" 
                         alt="Call to action illustration"
                         className="rounded-xl shadow-lg"
                         priority

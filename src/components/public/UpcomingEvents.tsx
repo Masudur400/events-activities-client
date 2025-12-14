@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import engagement from "../../../../public/images/Engagement.png";
-import birthday from "../../../../public/images/Birthday.png";
-import wedding from "../../../../public/images/Weddin.png";
-import housewarming from "../../../../public/images/Housewarming.png";
+import engagement from "../../../public/images/Engagement.png";
+import birthday from "../../../public/images/Birthday.png";
+import wedding from "../../../public/images/Weddin.png";
+import housewarming from "../../../public/images/Housewarming.png";
 import Link from "next/link";
 
 const events = [
@@ -59,8 +59,8 @@ export default function UpcomingEvents() {
             <div className="h-44 relative overflow-hidden">
               <Image
                 src={event.image}
-                alt={event.title}
-                fill
+                alt={event.title}  
+                loading="eager"
                 className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
               />
             </div>

@@ -7,23 +7,17 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LuLayoutDashboard } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
-import logo from '../../../../public/images/event.logo-2.png'
+import logo from '../../../../public/images/logo.png'
 import { ModeToggle } from '@/components/ModeToggle'
 import Avatar from 'react-avatar'
-
-interface IUser {
-  name: string;
-  photo?: string; // URL of profile photo (optional)
-}
-
-const user: IUser = {
-  name: "Masudur Rahman",
-  photo: "https://example.com/profile.jpg", // যদি photo থাকে
-};
+import { IUser } from '@/types/userTypes'
 
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function NavBar({ user }: { user: IUser }) {
 
-export default function NavBar() {
+  console.log(user);
+
   const [open, setOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const pathname = usePathname() // current route
@@ -48,14 +42,24 @@ export default function NavBar() {
             {open ? <X size={28} /> : <Menu size={28} />}
           </button>
           <Link href='/'>
-            <Image src={logo} width={50} height={50} alt="Logo" />
+            <Image
+              src={logo}
+              width={50}
+              height={50}
+              loading="eager"
+              alt="Logo" />
           </Link>
         </div>
 
         {/* LEFT: Logo + Links (desktop) */}
         <div className="hidden md:flex items-center gap-8">
           <Link href='/'>
-            <Image src={logo} width={50} height={50} alt="Logo" />
+            <Image
+              src={logo}
+              width={50}
+              height={50}
+              loading="eager"
+              alt="Logo" />
           </Link>
           <ul className="flex items-center gap-3 text-gray-700 dark:text-gray-200 font-medium">
             {links.map(link => (
@@ -73,11 +77,10 @@ export default function NavBar() {
 
         {/* RIGHT: Avatar + ModeToggle */}
         <div className="flex items-center gap-4">
-          <div className="relative">
-            {/* <Avatar name={name?.charAt(0)} src={photo} alt='img' className="rounded-full" size="45" onClick={() => setDropdownOpen(!dropdownOpen)}></Avatar> */}
+          <div className="relative"> 
             <Avatar
-              name={user.name}
-              src={user.photo}
+              name={user?.name?.charAt(0)}
+              src={user?.picture}
               alt='img'
               size="45"
               className="rounded-full cursor-pointer border dark:border-gray-600"
