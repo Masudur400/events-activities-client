@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server"
 
-import { parse } from "cookie"
-import { setCookie } from "./tokenHandlers" // তোমার project এর setCookie utility
-import jwt from "jsonwebtoken"
+ 
+import { setCookie } from "./tokenHandlers" 
 
 type FieldError = {
   field: string
@@ -44,7 +43,7 @@ export const register = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ name, email, password }),
-      credentials: "include", // cookie handle করতে
+      credentials: "include",  
     })
 
     const result = await res.json()
@@ -58,7 +57,7 @@ export const register = async (
       return { success: false, errors: mappedErrors }
     }
 
-    // ✅ Success, set tokens in cookies
+     
     if (result.data?.accessToken && result.data?.refreshToken) {
       const accessToken = result.data.accessToken
       const refreshToken = result.data.refreshToken
@@ -69,7 +68,7 @@ export const register = async (
         httpOnly: true,
         maxAge: 60 * 60 * 24, // 1 day
         path: "/",
-        sameSite: "strict",
+        sameSite: "none",
       })
 
       // Refresh token cookie
@@ -78,7 +77,7 @@ export const register = async (
         httpOnly: true,
         maxAge: 60 * 60 * 24 * 60, // 60 days
         path: "/",
-        sameSite: "strict",
+        sameSite: "none",
       })
     }
 

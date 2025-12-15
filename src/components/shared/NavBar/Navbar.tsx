@@ -4,22 +4,18 @@ import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { LuLayoutDashboard } from "react-icons/lu";
-import { MdLogout } from "react-icons/md";
+import { usePathname } from 'next/navigation' 
 import logo from '../../../../public/images/logo.png'
-import { ModeToggle } from '@/components/ModeToggle'
-import Avatar from 'react-avatar'
+import { ModeToggle } from '@/components/ModeToggle' 
 import { IUser } from '@/types/userTypes'
+import NavAvatar from './NavAvatar'
 
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function NavBar({ user }: { user: IUser }) {
-
-  console.log(user);
+ 
+export default function NavBar({ user }: { user: IUser }) { 
 
   const [open, setOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  
   const pathname = usePathname() // current route
 
   // helper to check active link
@@ -76,29 +72,8 @@ export default function NavBar({ user }: { user: IUser }) {
         </div>
 
         {/* RIGHT: Avatar + ModeToggle */}
-        <div className="flex items-center gap-4">
-          <div className="relative"> 
-            <Avatar
-              name={user?.name?.charAt(0)}
-              src={user?.picture}
-              alt='img'
-              size="45"
-              className="rounded-full cursor-pointer border dark:border-gray-600"
-              onClick={() => setDropdownOpen(!dropdownOpen)}></Avatar>
-
-            {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border dark:border-gray-600 py-2">
-                <p className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-900 cursor-pointer flex gap-2 items-center">
-                  <span><LuLayoutDashboard /></span>
-                  <span>Dashboard</span>
-                </p>
-                <p className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-900 cursor-pointer flex gap-2 items-center text-red-500">
-                  <span><MdLogout /></span>
-                  <span>Logout</span>
-                </p>
-              </div>
-            )}
-          </div>
+        <div className="flex items-center gap-4"> 
+          <NavAvatar user={user}></NavAvatar>
           <ModeToggle />
         </div>
       </div>

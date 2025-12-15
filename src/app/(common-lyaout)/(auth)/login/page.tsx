@@ -9,7 +9,12 @@ import Image from "next/image";
 import logo from '../../../../../public/images/logo.png'
 import LoginForm from "@/components/public/auth/LoginForm";
 
-const LoginPage = () => {
+const LoginPage = async ({
+  searchParams,
+}: {
+  searchParams?: Promise<{ redirect?: string }>;
+}) => {
+  const params = (await searchParams) || {};
   return (
 
     <>
@@ -32,7 +37,7 @@ const LoginPage = () => {
               />
             </CardHeader>
             <CardContent>
-              <LoginForm></LoginForm>
+              <LoginForm redirect={params.redirect}></LoginForm>
             </CardContent>
           </Card>
         </div>
