@@ -25,17 +25,34 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
     return null;
   };
 
-  useEffect(() => {
-    if (state && !state.success && state.message) {
-      toast.error(state.message);
-    }
+  // useEffect(() => {
+  //   if (state && !state.success && state.message) {
+  //     toast.error(state.message);
+  //   }
 
-    // ✅ redirect after successful login
+  //   // ✅ redirect after successful login
+  //   if (state && state?.success && state?.redirectTo) {
+  //     toast.success('login successful');
+  //     router.replace(redirect || state?.redirectTo); 
+  //   }
+  // }, [state, router, redirect]);
+  useEffect(() => {
+  if (state && state.success) {
+    toast.success('Login successful');
+
+    // ⚡ শুধু state.redirectTo use করো
+    const target = state.redirectTo; 
+    if (target) router.replace(target);
+  }
+
+  if (state && !state.success && state.message) {
+    toast.error(state.message);
+  }
     if (state && state?.success && state?.redirectTo) {
       toast.success('login successful');
       router.replace(redirect || state?.redirectTo); 
     }
-  }, [state, router, redirect]);
+}, [state, router, redirect]);
 
   return (
     <form action={formAction}>

@@ -21,7 +21,8 @@ export type LoginState = {
 const getDashboardRoute = (role: UserRole) => {
   if (role === "SUPER_ADMIN") return "/admin/dashboard";
   if (role === "HOST") return "/host/dashboard";
-  return "/dashboard";
+  // return "/dashboard";
+  return "/";
 };
 
 export const loginUser = async (

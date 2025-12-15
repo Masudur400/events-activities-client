@@ -1,13 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import { IUser } from '@/types/userTypes';
 import Link from 'next/link';
-import React, { useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import Avatar from 'react-avatar';
 import { LuLayoutDashboard } from 'react-icons/lu';
 import { MdLogout } from 'react-icons/md';
-import { logoutUser } from '@/services/auth/logoutUser'; // তোমার server function import
+import { logoutUser } from '@/services/auth/logoutUser';
+import { usePathname } from 'next/navigation';
 
 const NavAvatar = ({ user }: { user: IUser }) => {
+
+    const pathname = usePathname()
     const [dropdownOpen, setDropdownOpen] = useState(false)
     const [isPending, startTransition] = useTransition();
 
@@ -15,7 +19,7 @@ const NavAvatar = ({ user }: { user: IUser }) => {
 
     const handleLogout = () => {
         startTransition(() => {
-            logoutUser(); // server function call
+            logoutUser(pathname);
         });
     }
 
@@ -25,6 +29,9 @@ const NavAvatar = ({ user }: { user: IUser }) => {
                 user && userRole ?
                     <div className="relative">
                         <Avatar
+                            name={user?.name}
+                            // name={user?.name?.charAt(0)}
+                            src={user?.picture}
                             alt='img'
                             size="45"
                             className="rounded-full cursor-pointer border dark:border-gray-600"

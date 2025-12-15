@@ -1,11 +1,15 @@
-"use server"
+"use server";
 
 import { redirect } from "next/navigation";
 import { deleteCookie } from "./tokenHandlers";
 
-export const logoutUser = async () => {
-    await deleteCookie("accessToken");
-    await deleteCookie("refreshToken");
+export const logoutUser = async (redirectPath?: string) => {
+  await deleteCookie("accessToken");
+  await deleteCookie("refreshToken");
 
-    redirect("/login?loggedOut=true");
-}
+  const loginUrl = redirectPath
+    ? `/login?loggedOut=true&redirect=${encodeURIComponent(redirectPath)}`
+    : "/login?loggedOut=true";
+
+  redirect(loginUrl);
+};
