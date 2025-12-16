@@ -130,62 +130,133 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
   };
 
   // ---------------- INFO UPDATE ----------------
-  const handleInfoUpdate = async () => {
-    const newErrors: { [key: string]: string } = {};
-    let hasError = false;
+  // const handleInfoUpdate = async () => {
+  //   const newErrors: { [key: string]: string } = {};
+  //   let hasError = false;
 
-    // Validate Name
+  //   // Validate Name
+  //   const nameValidation = nameSchema.safeParse(formData.name);
+  //   if (!nameValidation.success) {
+  //     newErrors.name = nameValidation.error.issues[0]?.message || "Invalid name";
+  //     hasError = true;
+  //   }
+
+  //   // Validate Phone
+  //   const phoneValidation = phoneSchema.safeParse(formData.phone);
+  //   if (!phoneValidation.success) {
+  //     newErrors.phone = phoneValidation.error.issues[0]?.message || "Invalid phone";
+  //     hasError = true;
+  //   }
+
+  //   // Validate Address
+  //   const addressValidation = addressSchema.safeParse(formData.address);
+  //   if (!addressValidation.success) {
+  //     newErrors.address = addressValidation.error.issues[0]?.message || "Invalid address";
+  //     hasError = true;
+  //   }
+
+  //   if (hasError) {
+  //     setErrors(newErrors);
+  //     return;
+  //   } else {
+  //     setErrors({});
+  //   }
+
+  //   const toastId = toast.loading('Updating profile info...');
+  //   try {
+  //     setLoading(true);
+  //     const payload = {
+  //       name: formData.name,
+  //       phone: formData.phone,
+  //       address: formData.address,
+  //     };
+  //     const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/update-profile`, {
+  //       method: 'PATCH',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify(payload),
+  //       credentials: 'include',
+  //     });
+  //     if (!res.ok) throw new Error('Failed to update info');
+  //     const result = await res.json();
+  //     toast.success('Profile updated!', { id: toastId });
+  //     onUpdate?.(result.data);
+  //   } catch (err: any) {
+  //     toast.error(err.message || 'Something went wrong', { id: toastId });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const handleInfoUpdate = async () => {
+  const newErrors: { [key: string]: string } = {};
+  const payload: any = {};
+
+  // NAME
+  if (formData.name.trim() !== '') {
     const nameValidation = nameSchema.safeParse(formData.name);
     if (!nameValidation.success) {
-      newErrors.name = nameValidation.error.issues[0]?.message || "Invalid name";
-      hasError = true;
+      newErrors.name = nameValidation.error.issues[0].message!;
+    } else {
+      payload.name = formData.name;
     }
+  }
 
-    // Validate Phone
+  // PHONE
+  if (formData.phone.trim() !== '') {
     const phoneValidation = phoneSchema.safeParse(formData.phone);
     if (!phoneValidation.success) {
-      newErrors.phone = phoneValidation.error.issues[0]?.message || "Invalid phone";
-      hasError = true;
+      newErrors.phone = phoneValidation.error.issues[0].message!;
+    } else {
+      payload.phone = formData.phone;
     }
+  }
 
-    // Validate Address
+  // ADDRESS
+  if (formData.address.trim() !== '') {
     const addressValidation = addressSchema.safeParse(formData.address);
     if (!addressValidation.success) {
-      newErrors.address = addressValidation.error.issues[0]?.message || "Invalid address";
-      hasError = true;
-    }
-
-    if (hasError) {
-      setErrors(newErrors);
-      return;
+      newErrors.address = addressValidation.error.issues[0].message!;
     } else {
-      setErrors({});
+      payload.address = formData.address;
     }
+  }
 
-    const toastId = toast.loading('Updating profile info...');
-    try {
-      setLoading(true);
-      const payload = {
-        name: formData.name,
-        phone: formData.phone,
-        address: formData.address,
-      };
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/update-profile`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        credentials: 'include',
-      });
-      if (!res.ok) throw new Error('Failed to update info');
-      const result = await res.json();
-      toast.success('Profile updated!', { id: toastId });
-      onUpdate?.(result.data);
-    } catch (err: any) {
-      toast.error(err.message || 'Something went wrong', { id: toastId });
-    } finally {
-      setLoading(false);
-    }
-  };
+  // ❌ Nothing to update
+  if (Object.keys(payload).length === 0) {
+    toast.error("Please update at least one field");
+    return;
+  }
+
+  // ❌ Validation errors
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  setErrors({});
+
+  const toastId = toast.loading('Updating profile info...');
+  try {
+    setLoading(true);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/update-profile`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      credentials: 'include',
+    });
+
+    if (!res.ok) throw new Error('Failed to update info');
+
+    const result = await res.json();
+    toast.success('Profile updated!', { id: toastId });
+    onUpdate?.(result.data);
+  } catch (err: any) {
+    toast.error(err.message || 'Something went wrong', { id: toastId });
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="flex justify-center mt-10 px-4">
