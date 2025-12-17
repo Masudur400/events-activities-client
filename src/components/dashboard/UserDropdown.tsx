@@ -9,26 +9,35 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"; 
+} from "@/components/ui/dropdown-menu";
 import { logoutUser } from "@/services/auth/logoutUser";
 import { IUser } from "@/types/userTypes";
 import { Settings } from "lucide-react";
 import Link from "next/link";
+import Avatar from "react-avatar";
 
 interface UserDropdownProps {
   user: IUser;
 }
 
 const UserDropdown = ({ user }: UserDropdownProps) => {
-   
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="rounded-full">
-          <span className="text-sm font-semibold">
+        <div  className="rounded-full">
+          <Avatar
+            name={user?.name}
+            // name={user?.name?.charAt(0)}
+            src={user?.picture}
+            alt='img'
+            size="40"
+            className="rounded-full cursor-pointer border dark:border-gray-600"
+          ></Avatar>
+          {/* <span className="text-sm font-semibold">
             {user.name.charAt(0).toUpperCase()}
-          </span>
-        </Button>
+          </span> */}
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>
@@ -40,7 +49,7 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
             </p>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator /> 
+        <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href={"/reset-password"} className="cursor-pointer">
             <Settings className="mr-2 h-4 w-4" />
@@ -52,7 +61,7 @@ const UserDropdown = ({ user }: UserDropdownProps) => {
         //   onClick={handleLogout}
         //   className="cursor-pointer text-red-500"
         >
-          <Button onClick={()=>logoutUser()} className="bg-red-500  hover:bg-red-600">
+          <Button onClick={() => logoutUser()} className="bg-red-500  hover:bg-red-600">
             Logout
           </Button>
         </DropdownMenuItem>

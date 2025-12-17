@@ -1,11 +1,5 @@
-import React from 'react';
+import MyEventsTableWrapper from '@/components/host/MyEventsTableWrapper' 
 
-const MyEventsPage = () => {
-    return (
-        <div>
-            my events
-        </div>
-    );
-};
-
-export default MyEventsPage;
+export default function MyEventsPage() {
+  return <MyEventsTableWrapper />
+}
