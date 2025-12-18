@@ -7,11 +7,10 @@
 import { X, Trash2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useCallback, useEffect } from 'react'
-import { useDropzone } from 'react-dropzone'
-import { toast } from 'react-hot-toast'
+import { useDropzone } from 'react-dropzone' 
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input' 
-import { useUpdateEvent } from '@/hooks/event/useUpdateEvent'
+import { Input } from '@/components/ui/input'  
+import { useUpdateEventByAdmin } from '@/hooks/event/useUpdateEventsByAdmin'
 
 interface UpdateEventModalProps {
   open: boolean
@@ -20,6 +19,7 @@ interface UpdateEventModalProps {
 }
 
 export default function UpdateEventModal({ open, onClose, event }: UpdateEventModalProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
@@ -36,13 +36,14 @@ export default function UpdateEventModal({ open, onClose, event }: UpdateEventMo
     description: '',
   })
 
-  const { mutateAsync, isPending } = useUpdateEvent()
+  const { mutateAsync, isPending } = useUpdateEventByAdmin()
 
   // Helper function to format ISO date to YYYY-MM-DD
   const formatDate = (dateString: string) => {
     if (!dateString) return ''
     try {
       return new Date(dateString).toISOString().split('T')[0]
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       return ''
     }
@@ -52,8 +53,7 @@ export default function UpdateEventModal({ open, onClose, event }: UpdateEventMo
     if (event && open) {
       setFormValues({
         eventName: event.eventName || '',
-        eventType: event.eventType || '',
-        // ডেট ফরম্যাট ফিক্সড: ISO থেকে YYYY-MM-DD তে রূপান্তর
+        eventType: event.eventType || '', 
         date: formatDate(event.date), 
         startTime: event.startTime || '',
         endTime: event.endTime || '',
@@ -63,7 +63,7 @@ export default function UpdateEventModal({ open, onClose, event }: UpdateEventMo
         description: event.description || '',
       })
       setImagePreview(event.image || null)
-      setImageFile(null) // রিসেট ইমেজ ফাইল যখন নতুন ইভেন্ট লোড হয়
+      setImageFile(null)  
     }
   }, [event, open])
 
@@ -97,10 +97,7 @@ export default function UpdateEventModal({ open, onClose, event }: UpdateEventMo
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
-  const formData = new FormData();
-  
-  // ১. আপনার ব্যাকেন্ড JSON.parse(req.body.data) আশা করছে
-  // তাই 'data' কী-তে স্ট্রিং করে ডাটা পাঠান
+  const formData = new FormData(); 
   const dataToSubmit = {
     eventName: formValues.eventName,
     eventType: formValues.eventType,
@@ -115,7 +112,7 @@ export default function UpdateEventModal({ open, onClose, event }: UpdateEventMo
 
   formData.append('data', JSON.stringify(dataToSubmit));
 
-  // ২. ফাইল হ্যান্ডলিং (ব্যাকেন্ডে multer.single('file') আছে, তাই কী হবে 'file')
+   
   if (imageFile) {
     formData.append('file', imageFile);
   }
@@ -126,10 +123,7 @@ export default function UpdateEventModal({ open, onClose, event }: UpdateEventMo
   } catch (error) {
     console.error("Update error:", error);
   }
-};
-  
-
-
+}; 
 
 
 

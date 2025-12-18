@@ -15,17 +15,17 @@ interface UpdateEventInput {
   data: FormData
 }
 
-export const useUpdateEvent = () => {
+export const useUpdateEventByAdmin = () => {
   const queryClient = useQueryClient();
 
   return useMutation<UpdateEventResponse, any, UpdateEventInput>({
     mutationFn: async ({ id, data }: UpdateEventInput) => { 
-  const response = await api.patch(`/api/event/my-event/${id}`, data); 
+  const response = await api.patch(`/api/event/${id}`, data); 
   return response.data;
 },
     onSuccess: () => { 
       queryClient.invalidateQueries({ queryKey: ['events'] }); 
-      queryClient.invalidateQueries({ queryKey: ['my-events'] });
+      queryClient.invalidateQueries({ queryKey: ['all-events'] });
       toast.success('Event updated successfully!');
     },
     onError: (error: any) => {

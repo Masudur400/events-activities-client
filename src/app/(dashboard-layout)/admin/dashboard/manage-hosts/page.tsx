@@ -1,9 +1,10 @@
+import AllHostTableWrapper from '@/components/user/AllHostTableWrapper';
 import React from 'react';
 
 const ManageHostsPage = () => {
     return (
         <div>
-            ManageHosts
+            <AllHostTableWrapper></AllHostTableWrapper>
         </div>
     );
 };

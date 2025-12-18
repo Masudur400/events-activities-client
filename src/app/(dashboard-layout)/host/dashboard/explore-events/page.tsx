@@ -1,9 +1,10 @@
+import ExploreEventsTableWrapper from '@/components/event/ExploreEventsTableWrapper';
 import React from 'react';
 
 const ExploreEventsPage = () => {
     return (
         <div>
-            explore events page
+            <ExploreEventsTableWrapper></ExploreEventsTableWrapper>
         </div>
     );
 };

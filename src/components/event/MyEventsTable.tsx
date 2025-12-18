@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -12,6 +11,7 @@ import { useDeleteEvent } from '@/hooks/event/useDeleteEvent'
 import toast from 'react-hot-toast'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '../ui/alert-dialog'
 import UpdateEventModal from './UpdateEventModal'
+import Avatar from 'react-avatar'
 
 interface MyEventsTableProps {
     eventTypes: string[]
@@ -68,28 +68,43 @@ const MyEventsTable: React.FC<MyEventsTableProps> = ({ eventTypes }) => {
         limit: 10,
     })
 
+     
+    const total = data?.data?.meta
+    const totalEvents = (total as any)?.total
+
     const events: Event[] = data?.data?.data || []
     const totalPages = data?.data?.meta?.totalPages || 1
 
-    const updateURL = () => {
-        const params = new URLSearchParams()
-        if (searchTerm) params.set('search', searchTerm)
-        if (selectedType) params.set('type', selectedType)
-        if (page > 1) params.set('page', page.toString())
-        router.replace(`?${params.toString()}`)
-    }
 
     useEffect(() => {
-        updateURL()
+        const handler = setTimeout(() => {
+            const params = new URLSearchParams()
+            if (searchTerm.trim()) {
+                params.set('searchTerm', searchTerm)
+            } else {
+                params.delete('searchTerm')
+            }
+            if (page > 1) {
+                params.set('page', page.toString())
+            } else {
+                params.delete('page')
+            }
+            const queryString = params.toString()
+            router.replace(queryString ? `?${queryString}` : window.location.pathname)
+        }, 1500)
+
+        return () => clearTimeout(handler)
     }, [searchTerm, selectedType, page, router])
 
     const handleFilterChange = () => setPage(1)
 
-    const handleRefresh = async () => { 
-    setSearchTerm('')
-    setSelectedType('')  
-    await refetch()
-}
+    const handleRefresh = async () => {
+        setSearchTerm('')
+        setPage(1)
+        router.replace(window.location.pathname)
+        await refetch()
+    }
+
     const openModal = (event: Event) => {
         setSelectedEvent(event)
         setShowModal(true)
@@ -110,7 +125,6 @@ const MyEventsTable: React.FC<MyEventsTableProps> = ({ eventTypes }) => {
                 setDeleteId(null)
                 refetch()
             },
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             onError: (error: any) => {
                 toast.error(error?.response?.data?.message || 'Delete failed')
             },
@@ -118,14 +132,14 @@ const MyEventsTable: React.FC<MyEventsTableProps> = ({ eventTypes }) => {
     }
 
     const openUpdateModal = (event: Event) => {
-    setSelectedEvent(event)  // যেহেতু Update Modal-এ আগের ডেটা prefill হবে
-    setShowUpdateModal(true)
-}
+        setSelectedEvent(event)
+        setShowUpdateModal(true)
+    }
 
-const closeUpdateModal = () => {
-    setSelectedEvent(null)
-    setShowUpdateModal(false)
-}
+    const closeUpdateModal = () => {
+        setSelectedEvent(null)
+        setShowUpdateModal(false)
+    }
 
 
 
@@ -170,7 +184,7 @@ const closeUpdateModal = () => {
                     </button>
                 </div>
             </div>
-            <p className='text-lg mb-4'>Total Events ({events.length})</p>
+            <p className='text-lg mb-4'>Total Events ({totalEvents})</p>
             {/* Table Section */}
             <div className="overflow-x-auto border  rounded-xl">
                 <table className="w-full border-collapse">
@@ -215,8 +229,13 @@ const closeUpdateModal = () => {
                                     <td className="p-4 text-sm">
                                         {/* Host Cell with internal wrapper */}
                                         <div className="flex items-center gap-3">
-                                            <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 shadow-sm">
-                                                <Image src={event.hostId.picture} alt="" fill className="object-cover" />
+                                            <div className="">
+                                                <Avatar
+                                                    src={event?.hostId?.picture}
+                                                    name={event?.hostId?.name}
+                                                    size='40'
+                                                    className='rounded-full'
+                                                />
                                             </div>
                                             <span className="font-medium">{event.hostId.name}</span>
                                         </div>
@@ -268,7 +287,7 @@ const closeUpdateModal = () => {
                 </div>
             </div>
 
-            {/* Modal Section (এখানে কিছু পরিবর্তন করে আরও সুন্দর করা হয়েছে) */}
+            {/* Modal Section */}
             {showModal && selectedEvent && (
                 <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-100 p-4">
                     <div className="bg-white dark:bg-gray-900 rounded-md shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-hidden relative animate-in zoom-in duration-300">
@@ -326,8 +345,9 @@ const closeUpdateModal = () => {
                                 <div className="flex items-center gap-2 bg-gray-50 dark:bg-gray-700 p-4 rounded-xl shadow-sm hover:shadow-md transition">
                                     <Users className="w-5 h-5 text-purple-500" />
                                     <div>
-                                        <p className="text-[10px] dark:text-white uppercase tracking-wider">Participants</p>
-                                        <p className="font-semibold dark:text-white">{selectedEvent.bookedParticipants} / {selectedEvent.maxParticipants}</p>
+                                        <p className="text-[10px] dark:text-white  tracking-wider">Participants- {selectedEvent.bookedParticipants}</p>
+                                        <p className="text-[10px] dark:text-white   tracking-wider">Max Participant- {selectedEvent.maxParticipants}</p>
+                                        <p className="text-[10px] dark:text-white   tracking-wider">Min Participant- {selectedEvent.minParticipants}</p>
                                     </div>
                                 </div>
 
@@ -362,7 +382,13 @@ const closeUpdateModal = () => {
                                     <User className="w-3 h-3" /> Event Host
                                 </h4>
                                 <div className="flex items-start gap-4">
-                                    <Image src={selectedEvent.hostId.picture} alt={selectedEvent.hostId.name} width={60} height={60} className="rounded-full border-4 border-white shadow-md object-cover" />
+                                    {/* <Image src={selectedEvent.hostId.picture} alt={selectedEvent.hostId.name} width={60} height={60} className="rounded-full border-4 border-white shadow-md object-cover" /> */}
+                                    <Avatar
+                                        src={selectedEvent.hostId.picture}
+                                        name={selectedEvent.hostId.name}
+                                        size='60'
+                                        className='rounded-full border'
+                                    />
                                     <div className="flex-1 space-y-1">
                                         <h5 className="font-bold dark:text-whit">{selectedEvent.hostId.name}</h5>
                                         <p className="text-xs dark:text-whit italic">{selectedEvent.hostId.bio}</p>
@@ -404,12 +430,12 @@ const closeUpdateModal = () => {
 
 
             {showUpdateModal && selectedEvent && (
-    <UpdateEventModal 
-        open={showUpdateModal} 
-        onClose={closeUpdateModal} 
-        event={selectedEvent} 
-    />
-)}
+                <UpdateEventModal
+                    open={showUpdateModal}
+                    onClose={closeUpdateModal}
+                    event={selectedEvent}
+                />
+            )}
 
         </div>
     )

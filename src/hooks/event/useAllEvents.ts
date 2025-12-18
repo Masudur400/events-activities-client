@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import api from '@/lib/axios'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, keepPreviousData } from '@tanstack/react-query'
 
 interface Event {
   _id: string
@@ -32,44 +32,50 @@ interface Event {
   }
 }
 
-
 interface Meta {
-  totalPages: number
-  totalItems: number
+  page: number
+  limit: number
+  total: number
+  totalPage: number
 }
 
-export interface MyEventsResponse {
+export interface AllEventsResponse {
   success: boolean
   statusCode: number
   message: string
-  data: {
-    meta: Meta
-    data: Event[]  
-  }
+  data: Event[]      // root-level array
+  meta: Meta         // root-level meta
 }
 
-interface GetMyEventsParams {
+
+interface GetAllEventsParams {
   searchTerm?: string
   eventType?: string
   page?: number
   limit?: number
 }
 
-export const useMyEvents = (params: GetMyEventsParams) => {
-  return useQuery<MyEventsResponse>({
-    queryKey: ['my-events', params],
+export const useAllEvents = (params: GetAllEventsParams) => {
+  return useQuery<AllEventsResponse>({
+    queryKey: ['all-events', params],
+
     queryFn: async () => {
       const query = new URLSearchParams(
-        Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined)
+        Object.entries(params).filter(
+          ([_, value]) => value !== '' && value !== undefined
+        ) as [string, string][]
       ).toString()
 
-      const res = await api.get(`/api/event/my-events?${query}`, {
+      const res = await api.get(`/api/event/all-events?${query}`, {
         withCredentials: true,
       })
 
-       
-      return res.data as MyEventsResponse
+      return res.data
     },
+
+     
+    placeholderData: keepPreviousData,
+
     staleTime: 60 * 1000,
   })
 }
