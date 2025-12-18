@@ -65,26 +65,26 @@ const ExploreEventsTable: React.FC<MyEventsTableProps> = ({ eventTypes }) => {
     const total = data?.meta
     const totalEvents = (total as any)?.total
 
+    
     // ---------------- URL Update ---------------- 
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            const params = new URLSearchParams()
-            if (searchTerm.trim()) {
-                params.set('searchTerm', searchTerm)
-            } else {
-                params.delete('searchTerm')
-            }
-            if (page > 1) {
-                params.set('page', page.toString())
-            } else {
-                params.delete('page')
-            }
-            const queryString = params.toString()
-            router.replace(queryString ? `?${queryString}` : window.location.pathname)
-        }, 1500)
+useEffect(() => {
+    const handler = setTimeout(() => {
+        const params = new URLSearchParams() 
+        if (searchTerm.trim()) {
+            params.set('searchTerm', searchTerm)
+        } 
+        if (selectedType) {
+            params.set('eventType', selectedType)
+        } 
+        if (page > 1) {
+            params.set('page', page.toString())
+        } 
+        const queryString = params.toString()
+        router.replace(queryString ? `?${queryString}` : window.location.pathname)
+    }, 700)   
+    return () => clearTimeout(handler)
+}, [searchTerm, selectedType, page, router])  
 
-        return () => clearTimeout(handler)
-    }, [searchTerm, selectedType, page, router])
 
     // ---------------- Handlers ----------------
     const handleFilterChange = () => setPage(1)

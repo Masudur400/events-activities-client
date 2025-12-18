@@ -68,7 +68,7 @@ const MyEventsTable: React.FC<MyEventsTableProps> = ({ eventTypes }) => {
         limit: 10,
     })
 
-     
+
     const total = data?.data?.meta
     const totalEvents = (total as any)?.total
 
@@ -78,28 +78,27 @@ const MyEventsTable: React.FC<MyEventsTableProps> = ({ eventTypes }) => {
 
     useEffect(() => {
         const handler = setTimeout(() => {
-            const params = new URLSearchParams()
+            const params = new URLSearchParams();
             if (searchTerm.trim()) {
-                params.set('searchTerm', searchTerm)
-            } else {
-                params.delete('searchTerm')
+                params.set('searchTerm', searchTerm);
+            }
+            if (selectedType) {
+                params.set('type', selectedType);
             }
             if (page > 1) {
-                params.set('page', page.toString())
-            } else {
-                params.delete('page')
+                params.set('page', page.toString());
             }
-            const queryString = params.toString()
-            router.replace(queryString ? `?${queryString}` : window.location.pathname)
-        }, 1500)
-
-        return () => clearTimeout(handler)
-    }, [searchTerm, selectedType, page, router])
+            const queryString = params.toString();
+            router.replace(queryString ? `?${queryString}` : window.location.pathname, { scroll: false });
+        }, 500); 
+        return () => clearTimeout(handler);
+    }, [searchTerm, selectedType, page, router]);
 
     const handleFilterChange = () => setPage(1)
 
     const handleRefresh = async () => {
         setSearchTerm('')
+        setSelectedType('')
         setPage(1)
         router.replace(window.location.pathname)
         await refetch()

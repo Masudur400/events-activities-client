@@ -84,36 +84,42 @@ const AllEventsTable: React.FC<MyEventsTableProps> = ({ eventTypes }) => {
 
      
 
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            const params = new URLSearchParams()
-            if (searchTerm.trim()) {
-                params.set('searchTerm', searchTerm)
-            } else {
-                params.delete('searchTerm')
-            }
-            if (page > 1) {
-                params.set('page', page.toString())
-            } else {
-                params.delete('page')
-            }
-            const queryString = params.toString()
-            router.replace(queryString ? `?${queryString}` : window.location.pathname)
-        }, 1500)
+     
+useEffect(() => {
+    const handler = setTimeout(() => {
+        const params = new URLSearchParams(); 
+        if (searchTerm.trim()) {
+            params.set('searchTerm', searchTerm);
+        } 
+        if (selectedType) {
+            params.set('eventType', selectedType);
+        } 
+        if (page > 1) {
+            params.set('page', page.toString());
+        } 
+        const queryString = params.toString(); 
+        router.replace(queryString ? `?${queryString}` : window.location.pathname); 
+    }, 700);  
 
-        return () => clearTimeout(handler)
-    }, [searchTerm, selectedType, page, router])
+    return () => clearTimeout(handler);
+}, [searchTerm, selectedType, page, router]);
 
 
     // ---------------- Handlers ----------------
     const handleFilterChange = () => setPage(1)
 
     const handleRefresh = async () => {
-        setSearchTerm('')
-        setPage(1)
-        router.replace(window.location.pathname)
-        await refetch()
-    }
+    // ১. স্টেটগুলো রিসেট করা
+    setSearchTerm('')
+    setSelectedType('') // এটি আগে বাদ পড়েছিল
+    setPage(1)
+    
+    // ২. ইউআরএল ক্লিন করা
+    router.replace(window.location.pathname)
+    
+    // ৩. রিফ্লেক্ট হওয়ার সাথে সাথে এপিআই কল করা (ম্যানুয়ালি এম্পটি ভ্যালু পাঠিয়ে)
+    await refetch() 
+}
 
     const openModal = (event: Event) => {
         setSelectedEvent(event)

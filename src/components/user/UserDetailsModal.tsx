@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @typescript-eslint/no-explicit-any */ 
 'use client'
 import { User } from '@/hooks/user/useAllUsers'
 import Avatar from 'react-avatar'
