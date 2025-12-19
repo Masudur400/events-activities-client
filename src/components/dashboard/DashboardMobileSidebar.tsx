@@ -34,7 +34,7 @@ const DashboardMobileSidebar = ({
         <Link href={dashboardHome} className="flex items-center gap-3">
           <Image src={logo} width={50} height={50} alt="Logo" />
           <p className="font-bold text-yellow-700/90 dark:text-yellow-600">
-            Events & <br /> Entertainment
+            Event & <br /> Entertainment
           </p>
         </Link>
       </div>

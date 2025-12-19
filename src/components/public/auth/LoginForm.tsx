@@ -38,7 +38,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
     toast.error(state.message);
   }
     if (state && state?.success && state?.redirectTo) {
-      toast.success('login successful');
+      // toast.success('login successful');
       router.replace(redirect || state?.redirectTo); 
     }
 }, [state, router, redirect]);

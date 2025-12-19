@@ -18,7 +18,7 @@ const MyEventsTableWrapper = () => {
   }, [])
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 container mx-auto">
       {/* Create Event Button */}
       <div className="flex justify-end">
         <button

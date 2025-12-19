@@ -16,7 +16,7 @@ const AllEventsTableWrapper = () => {
   }, [])
 
   return (
-    <div className="space-y-4"> 
+    <div className="space-y-4 container mx-auto"> 
       {/* Events Table */}
       <AllEventsTable eventTypes={eventTypes} /> 
     </div>

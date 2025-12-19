@@ -1,8 +1,10 @@
+import EventWrapper from "@/components/public/event/EventWrapper";
+
  
 const EventPage = () => {
     return (
         <div>
-            event page
+           <EventWrapper></EventWrapper>
         </div>
     );
 };

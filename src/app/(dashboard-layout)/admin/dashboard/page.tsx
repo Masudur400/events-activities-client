@@ -1,9 +1,11 @@
+import AdminState from '@/components/dashboard/state/AdminStat';
 import React from 'react';
 
 const AdminDashboardPage = () => {
     return (
         <div>
-            AdminDashboard
+            
+            <AdminState></AdminState>
         </div>
     );
 };

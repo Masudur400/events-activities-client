@@ -3,7 +3,7 @@ import AllUserTable from './AllUserTable';
 
 const AllUserTableWrapper = () => {
     return (
-        <div>
+        <div className='container mx-auto'>
             <AllUserTable></AllUserTable>
         </div>
     );

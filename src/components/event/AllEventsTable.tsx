@@ -108,16 +108,11 @@ useEffect(() => {
     // ---------------- Handlers ----------------
     const handleFilterChange = () => setPage(1)
 
-    const handleRefresh = async () => {
-    // ১. স্টেটগুলো রিসেট করা
+    const handleRefresh = async () => { 
     setSearchTerm('')
-    setSelectedType('') // এটি আগে বাদ পড়েছিল
-    setPage(1)
-    
-    // ২. ইউআরএল ক্লিন করা
-    router.replace(window.location.pathname)
-    
-    // ৩. রিফ্লেক্ট হওয়ার সাথে সাথে এপিআই কল করা (ম্যানুয়ালি এম্পটি ভ্যালু পাঠিয়ে)
+    setSelectedType('')  
+    setPage(1) 
+    router.replace(window.location.pathname) 
     await refetch() 
 }
 
@@ -180,8 +175,8 @@ useEffect(() => {
         <div className="p-6 rounded-xl shadow-sm border border-gray-100 dark:border-yellow-700 w-full">
             {/* Search & Filter Section */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
-                <div className="relative w-full md:w-1/2 group">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-yellow-500 transition-colors w-4 h-4" />
+                <div className="relative w-full group">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors w-4 h-4" />
                     <input
                         type="text"
                         placeholder="Search events by title..."
@@ -190,7 +185,7 @@ useEffect(() => {
                             setSearchTerm(e.target.value)
                             handleFilterChange()
                         }}
-                        className="w-full border border-gray-200 rounded-xl px-4 py-2.5 pl-10 focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 transition-all text-sm"
+                        className="w-full rounded-xl px-4 py-2.5 pl-10 border shadow text-sm"
                     />
                 </div>
                 <div className="w-full md:w-auto flex items-center gap-3">

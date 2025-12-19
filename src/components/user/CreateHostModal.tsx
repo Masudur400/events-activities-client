@@ -10,12 +10,13 @@ import { toast } from 'react-hot-toast'
 interface CreateHostModalProps {
   open: boolean
   onClose: () => void
+  onCreated?: () => void;
 }
 
 const CreateHostModal = ({ open, onClose }: CreateHostModalProps) => {
   const [picture, setPicture] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
-  const [showPassword, setShowPassword] = useState(false) // পাসওয়ার্ড দেখার জন্য স্টেট
+  const [showPassword, setShowPassword] = useState(false)  
 
   const { mutateAsync, isPending } = useCreateHost() as any
 

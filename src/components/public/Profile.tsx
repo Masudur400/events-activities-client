@@ -8,6 +8,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Camera, Home, Pen, Shield, User } from 'lucide-react';
 import { z } from 'zod';
+import Avatar from 'react-avatar';
 
 interface ProfileProps {
   user: IUser;
@@ -267,11 +268,14 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
 
           {/* Avatar with Camera Icon */}
           <div className="relative">
-            <img
+            <div className='border-4 rounded-full'>
+              <Avatar
               src={imagePreview}
-              alt="User Avatar"
-              className="w-40 h-40 md:w-52 md:h-52 rounded-full border-4 border-yellow-700 shadow-lg object-cover"
+              name={user.name}
+              size='200'
+              className="rounded-full"
             />
+            </div>
             <label
               htmlFor="file-upload"
               className="absolute top-0 right-4   p-2 rounded-full cursor-pointer bg-linear-to-br from-yellow-900/30 via-yellow-800/70 to-yellow-900/30 text-white text-lg shadow transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:from-yellow-900/50 hover:via-yellow-800/90 hover:to-yellow-900/50"

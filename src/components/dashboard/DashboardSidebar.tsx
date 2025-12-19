@@ -9,9 +9,7 @@ const DashboardSidebar = async () => {
 
   if (!data || !data.user) return null;
 
-  const { user } = data;
-
-  // 🔥 এখানে await দিতে হবে
+  const { user } = data; 
   const navItems: NavSection[] = await getNavItemsByRole(user.role);
 
   const dashboardHome = getDefaultDashboardRoute(user.role);

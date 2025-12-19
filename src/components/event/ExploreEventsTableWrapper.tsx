@@ -16,7 +16,7 @@ const ExploreEventsTableWrapper = () => {
   }, [])
 
   return (
-    <div className="space-y-4"> 
+    <div className="space-y-4 container mx-auto"> 
       {/* Events Table */}
       <ExploreEventsTable eventTypes={eventTypes} /> 
     </div>
