@@ -90,13 +90,3 @@ An all-in-one platform for discovering, hosting, and booking events. Built with 
 
 ---
 
-## 📸 Screenshots
-*(Add your project screenshots here to make it more attractive)*
-
----
-
-## 🤝 Contributing
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
-## 📝 License
-Distributed under the MIT License.
