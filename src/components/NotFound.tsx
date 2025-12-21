@@ -22,6 +22,7 @@ export default function NotFound() {
             alt="Logo"
             width={90}
             height={90}
+            loading="eager"
             className="drop-shadow-[0_0_20px_rgba(234,179,8,0.7)]"
           />
         </motion.div>

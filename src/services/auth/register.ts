@@ -94,7 +94,7 @@ export const register = async (
       await setCookie("accessToken", accessToken, {
         secure: true,
         httpOnly: true,
-        maxAge: 60 * 60 * 24,
+        maxAge: 24 * 60 * 60 * 1000,
         path: "/",
         sameSite: "none",
       });
@@ -103,7 +103,7 @@ export const register = async (
       await setCookie("refreshToken", refreshToken, {
         secure: true,
         httpOnly: true,
-        maxAge: 60 * 60 * 24 * 60,
+        maxAge: 60 * 24 * 60 * 60 * 1000,
         path: "/",
         sameSite: "none",
       });

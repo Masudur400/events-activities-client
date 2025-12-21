@@ -1,4 +1,5 @@
-import api from '@/lib/axios'
+ 
+import { privateApi } from '@/lib/axios'
 import { useMutation, useQueryClient } from '@tanstack/react-query' 
 
 export const useDeleteEvent = () => {
@@ -6,7 +7,7 @@ export const useDeleteEvent = () => {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await api.delete(`/api/event/my-event/${id}`)
+      const res = await privateApi.delete(`/api/event/my-event/${id}`)
       return res.data
     },
     onSuccess: () => {

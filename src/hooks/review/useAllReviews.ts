@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import api from "@/lib/axios";
+import { publicApi } from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query"; 
 
 export const useAllReviews = () => {
   return useQuery({
     queryKey: ["all-reviews"],
     queryFn: async () => {
-      const res = await api.get("/api/review/all-reviews"); // আপনার রাউট পাথ অনুযায়ী
+      const res = await publicApi.get("/api/review/all-reviews"); // আপনার রাউট পাথ অনুযায়ী
       return res.data?.data;
     },
   });

@@ -1,6 +1,6 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query'
-import api from '@/lib/axios'
+import { useQuery, UseQueryOptions } from '@tanstack/react-query' 
 import { IUser } from '@/types/userTypes'
+import { privateApi } from '@/lib/axios'
 
 interface GetHostsParams {
   searchTerm?: string
@@ -23,7 +23,7 @@ export const useAllHosts = ({ searchTerm = '', page = 1, limit = 10 }: GetHostsP
   return useQuery<HostResponse, Error>({
     queryKey: ['hosts', searchTerm, page, limit],
     queryFn: async () => {
-      const res = await api.get<HostResponse>('/api/user/all-hosts', {
+      const res = await privateApi.get<HostResponse>('/api/user/all-hosts', {
         params: { searchTerm, page, limit },
       })
       return res.data

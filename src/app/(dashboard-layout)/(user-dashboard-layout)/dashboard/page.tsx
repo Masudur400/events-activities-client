@@ -1,4 +1,4 @@
-
+export const dynamic = 'force-dynamic';
 import MyBookingsClient from '@/components/booking/MyBookingsClient';
 import { UserStats } from '@/components/dashboard/state/UserStats';
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// hooks/event/useUpdateEvent.ts
-import api from '@/lib/axios'
+// hooks/event/useUpdateEvent.ts 
+import { privateApi } from '@/lib/axios'
 import { useMutation, useQueryClient } from '@tanstack/react-query' 
 import toast from 'react-hot-toast'
 
@@ -20,7 +20,7 @@ export const useUpdateEvent = () => {
 
   return useMutation<UpdateEventResponse, any, UpdateEventInput>({
     mutationFn: async ({ id, data }: UpdateEventInput) => { 
-  const response = await api.patch(`/api/event/my-event/${id}`, data); 
+  const response = await privateApi.patch(`/api/event/my-event/${id}`, data); 
   return response.data;
 },
     onSuccess: () => { 

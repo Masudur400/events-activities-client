@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ExploreEventsTableWrapper from '@/components/event/ExploreEventsTableWrapper';
 import React from 'react';
 

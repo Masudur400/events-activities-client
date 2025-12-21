@@ -32,7 +32,7 @@ const DashboardMobileSidebar = ({
       {/* Logo */}
       <div className="flex h-16 items-center border-b px-6">
         <Link href={dashboardHome} className="flex items-center gap-3">
-          <Image src={logo} width={50} height={50} alt="Logo" />
+          <Image src={logo} width={50} height={50} loading="eager" alt="Logo" />
           <p className="font-bold text-yellow-700/90 dark:text-yellow-600">
             Event & <br /> Entertainment
           </p>

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import EventWrapper from "@/components/public/event/EventWrapper";
 
  

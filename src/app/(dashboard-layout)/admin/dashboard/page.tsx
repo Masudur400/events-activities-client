@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import AdminState from '@/components/dashboard/state/AdminStat';
 import React from 'react';
 

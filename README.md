@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Event & Entertainment Management System
 
-## Getting Started
+An all-in-one platform for discovering, hosting, and booking events. Built with a modern tech stack focusing on performance, scalability, and user experience.
 
-First, run the development server:
+## 🔗 Live Links
+* **Frontend:** [https://events-activities.vercel.app](https://events-activities.vercel.app)
+* **Backend API:** [https://events-activities-server.vercel.app](https://events-activities-server.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Common Features
+* **User-Friendly UI:** Modern, clean, and fully responsive design across all devices.
+* **Authentication:** Secure login and registration using **JWT (JSON Web Tokens)**.
+* **Password Management:** Full support for **Password Reset** and **Forgot Password** via email.
+* **Profile Management:** Each user role can update their profile information and settings.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### User Role
+* **Event Browsing:** Explore various events with a rich filtering system.
+* **Detailed Event Pages:** View event descriptions, timing, location, and host info.
+* **Ratings & Reviews:** Share feedback and rate events after attending.
+* **Secure Booking:** Seamless event booking with **SSLCommerz** payment gateway integration.
+* **Booking History:** Track and manage personal event bookings.
 
-## Learn More
+### Host Role
+* **Event Creation:** Dedicated dashboard to create and publish new events.
+* **Event Management:** Edit or update details of hosted events.
+* **Analytics:** (Optional: track how many people booked your events).
 
-To learn more about Next.js, take a look at the following resources:
+### Admin Role (Master Control)
+* **User & Host Management:** Overview and control over all registered accounts.
+* **Event Moderation:** Review, approve, or manage any event on the platform.
+* **Financial Tracking:** Monitor all bookings and payments in one place.
+* **Review Management:** Moderate user ratings and reviews.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠 Tech Stack
 
-## Deploy on Vercel
+### Frontend
+* **Framework:** Next.js (App Router)
+* **Language:** TypeScript
+* **State Management:** TanStack Query (React Query)
+* **Styling:** Tailwind CSS / Lucid Icons
+* **Form Handling:** React Hook Form / Zod
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Backend
+* **Authentication:** JWT (JSON Web Token)
+* **Payment Gateway:** SSLCommerz
+* **Database:** (Add your database name here, e.g., MongoDB/PostgreSQL)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📦 Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    ```
+
+2.  **Navigate to the project folder:**
+    ```bash
+    cd project-folder
+    ```
+
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+4.  **Set up Environment Variables:**
+    Create a `.env.local` file and add the following:
+    ```env
+    NEXT_PUBLIC_API=your_backend_api_url
+    # Add other keys like SSLCommerz Store ID etc.
+    ```
+
+5.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 🔐 Security Features
+* Protected routes based on User Roles (Admin, Host, User).
+* Password hashing for database security.
+* Secure payment processing via SSLCommerz redirect.
+
+---
+
+## 📸 Screenshots
+*(Add your project screenshots here to make it more attractive)*
+
+---
+
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+
+## 📝 License
+Distributed under the MIT License.

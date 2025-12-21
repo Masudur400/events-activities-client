@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Star, X, Loader2 } from 'lucide-react'
+import { Star, X } from 'lucide-react'
 
 interface ReviewModalProps {
   onClose: () => void;
@@ -89,7 +89,7 @@ export const ReviewModal = ({ onClose, onSubmit, isLoading }: ReviewModalProps) 
         >
           {isLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              {/* <Loader2 className="w-4 h-4 animate-spin" /> */}
               Processing...
             </>
           ) : (

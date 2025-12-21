@@ -41,7 +41,7 @@ const HostStateCards = () => {
         },
         {
             label: "Total Earnings",
-            value: `৳${" "}${stats?.totalPaymentAmount || 0}`,
+            value: `Tk.${" "}${stats?.totalPaymentAmount || 0}`,
             icon: Banknote,
             color: "text-orange-600",
             bg: "bg-orange-50"
@@ -57,10 +57,10 @@ const HostStateCards = () => {
                 >
                     <div className="flex justify-between items-start">
                         <div>
-                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">
+                            <p className="text-[10px] font-black tracking-widest text-gray-400 mb-1">
                                 {card.label}
                             </p>
-                            <h3 className="text-2xl font-black   tracking-tighter">
+                            <h3 className="text-xl font-bold   tracking-tighter">
                                 {card.value}
                             </h3>
                         </div>

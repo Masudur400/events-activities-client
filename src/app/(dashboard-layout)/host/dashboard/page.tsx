@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ManageBookingTable from '@/components/booking/ManageBookingTable';
 import HostStateCards from '@/components/dashboard/state/HostStateCards';
 import React from 'react';

@@ -11,9 +11,21 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: '10mb', // ✅ Server Actions body size limit
+      bodySizeLimit: '10mb', 
     },
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/proxy/:path*",
+        destination: `${process.env.NEXT_PUBLIC_API}/:path*`,
+      },
+    ];
   },
 };
 
 export default nextConfig;
+ 

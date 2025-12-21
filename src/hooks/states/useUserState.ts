@@ -1,11 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import api from "@/lib/axios";
+import { privateApi } from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query"; 
 
 export const useGetUserState = () => {
   return useQuery({
     queryKey: ["user-state"],
     queryFn: async () => {
-      const res = await api.get("/api/state/user");
+      const res = await privateApi.get("/api/state/user");
       return res.data?.data;
     },
   });

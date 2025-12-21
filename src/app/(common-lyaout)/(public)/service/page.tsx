@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Services from "@/components/public/Service/Service";
 
  

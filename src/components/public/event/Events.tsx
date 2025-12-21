@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -54,7 +52,7 @@ const Events: React.FC<MyEventsTableProps> = ({ eventTypes }) => {
         limit: 12,
     })
 
-    const events: Event[] = data?.data || []
+    const events: Event[] = data?.data || [] 
     const totalPages = data?.meta?.totalPage || 1
 
 

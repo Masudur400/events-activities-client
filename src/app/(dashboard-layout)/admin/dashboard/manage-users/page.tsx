@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import AllUserTableWrapper from '@/components/user/AllUserTableWrapper';
 import React from 'react';
 

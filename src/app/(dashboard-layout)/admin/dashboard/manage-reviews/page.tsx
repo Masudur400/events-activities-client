@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ManageReviewTable from '@/components/review/ManageReviewTable';
 import React from 'react';
 

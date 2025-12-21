@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useQuery } from '@tanstack/react-query'
-import api from '@/lib/axios'
+import { useQuery } from '@tanstack/react-query' 
 import { IsActive } from '@/types/userTypes'
+import { privateApi } from '@/lib/axios'
 
 export interface User {
   _id?: string
@@ -46,7 +46,7 @@ export const useAllUsers = (params: GetAllUsersParams) => {
       const query = new URLSearchParams(
         Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined)
       ).toString()
-      const res = await api.get(`/api/user/all-users?${query}`, { withCredentials: true })
+      const res = await privateApi.get(`/api/user/all-users?${query}`, { withCredentials: true })
       return res.data
     },
     staleTime: 60 * 1000,

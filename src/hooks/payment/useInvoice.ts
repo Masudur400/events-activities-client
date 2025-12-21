@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useMutation } from "@tanstack/react-query";
-import api from "@/lib/axios";
+import { privateApi } from "@/lib/axios";
+import { useMutation } from "@tanstack/react-query"; 
 import toast from "react-hot-toast";
 
 export const useDownloadInvoice = () => {
   return useMutation({
     mutationFn: async (paymentId: string) => {
-      const res = await api.get(`/api/payment/invoice/${paymentId}`);
+      const res = await privateApi.get(`/api/payment/invoice/${paymentId}`);
       return res.data; // এখানে data ফিল্ডে সরাসরি URL টা আসবে
     },
     onSuccess: (data) => {

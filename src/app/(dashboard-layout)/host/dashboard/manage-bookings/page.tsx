@@ -1,4 +1,4 @@
- 
+ export const dynamic = 'force-dynamic';
 import ManageBookingTable from '@/components/booking/ManageBookingTable'; 
 import React from 'react';
 

@@ -12,7 +12,7 @@ import { ReviewModal } from '@/components/review/ReviewModal'
 import toast from 'react-hot-toast'
 import { IUser, Role } from '@/types/userTypes'
 import { useMutation } from '@tanstack/react-query'
-import api from '@/lib/axios'
+import { privateApi } from '@/lib/axios'
 import { BookingModal } from '@/components/booking/BookingModal'
 
 export const EventDetailsContent = ({ event, user }: { event: any, user: IUser }) => {
@@ -48,7 +48,7 @@ export const EventDetailsContent = ({ event, user }: { event: any, user: IUser }
 
     const { mutate: handleBooking, isPending: isBookingLoading } = useMutation({
         mutationFn: async (payload: { event: string; guestCount: number }) => {
-            const res = await api.post('/api/booking', payload);
+            const res = await privateApi.post('/api/booking', payload);
             return res.data;
         },
         onSuccess: (res) => {

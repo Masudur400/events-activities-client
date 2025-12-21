@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import toast from 'react-hot-toast'
-import api from '@/lib/axios'
+import toast from 'react-hot-toast' 
 import { IsActive } from '@/types/userTypes'
+import { privateApi } from '@/lib/axios'
 
 interface UpdateUserInput {
   id: string
@@ -18,7 +18,7 @@ export const useUpdateUser = () => {
 
   return useMutation<any, any, UpdateUserInput>({
     mutationFn: async ({ id, payload }) => {
-      const res = await api.patch(`/api/user/${id}`, payload)
+      const res = await privateApi.patch(`/api/user/${id}`, payload)
       return res.data
     },
     onSuccess: () => {

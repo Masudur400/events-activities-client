@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import api from '@/lib/axios'
+import { publicApi } from '@/lib/axios'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
 
 interface Event {
@@ -66,7 +66,7 @@ export const useAllEvents = (params: GetAllEventsParams) => {
         ) as [string, string][]
       ).toString()
 
-      const res = await api.get(`/api/event/all-events?${query}`, {
+      const res = await publicApi.get(`/api/event/all-events?${query}`, {
         withCredentials: true,
       })
 

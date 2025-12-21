@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import About from "@/components/public/About/About";
 
  

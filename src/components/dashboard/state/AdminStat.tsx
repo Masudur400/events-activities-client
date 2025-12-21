@@ -39,7 +39,7 @@ const AdminState = () => {
   ];
 
   const statsCards = [
-    { title: 'Total Revenue', value: `৳${" "}${data?.totalPaidAmount}`, icon: CoinsIcon, color: 'text-green-600', bg: 'bg-green-50' },
+    { title: 'Total Revenue', value: `TK.${" "}${data?.totalPaidAmount}`, icon: CoinsIcon, color: 'text-green-600', bg: 'bg-green-50' },
     { title: 'Total Events', value: data?.totalEvents, icon: Calendar, color: 'text-blue-600', bg: 'bg-blue-50' },
     { title: 'Total Payments', value: data?.totalPaymentCount, icon: CreditCard, color: 'text-purple-600', bg: 'bg-purple-50' },
     { title: 'Total Accounts', value: data?.totalUserCount, icon: Users, color: 'text-yellow-600', bg: 'bg-yellow-50' },
@@ -69,8 +69,8 @@ const AdminState = () => {
           <div key={i} className="bg-white dark:bg-gray-900 p-6 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex justify-between items-start">
               <div>
-                <p className="text-sm font-bold text-gray-500 uppercase tracking-wider">{card.title}</p>
-                <h3 className="text-3xl font-black mt-1 text-gray-800 dark:text-white">{card.value}</h3>
+                <p className="text-sm font-bold text-gray-500   tracking-wider">{card.title}</p>
+                <h3 className="text-xl font-bold mt-1 text-gray-800 dark:text-white">{card.value}</h3>
               </div>
               <div className={`${card.bg} p-3 rounded-2xl`}>
                 <card.icon className={`w-6 h-6 ${card.color}`} />

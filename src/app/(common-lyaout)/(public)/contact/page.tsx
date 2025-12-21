@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Contact from "@/components/public/contact/Contact";
 
  

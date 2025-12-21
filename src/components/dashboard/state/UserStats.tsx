@@ -33,7 +33,7 @@ export const UserStats = () => {
         },
         {
             title: "Total Spent",
-            value: `৳${" "}${stats?.totalPaymentAmount || 0}`,
+            value: `Tk.${" "}${stats?.totalPaymentAmount || 0}`,
             icon: <Banknote className="w-6 h-6" />,
             color: "text-yellow-600",
             bg: "bg-yellow-500/10"
@@ -54,7 +54,7 @@ export const UserStats = () => {
                         <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">
                             {card.title}
                         </p>
-                        <h3 className="text-2xl font-black text-gray-900 dark:text-white mt-0.5">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mt-0.5">
                             {card.value}
                         </h3>
                     </div>

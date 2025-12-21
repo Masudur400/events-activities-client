@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useMutation } from "@tanstack/react-query";
-import api from "@/lib/axios";
+import { privateApi } from "@/lib/axios";
+import { useMutation } from "@tanstack/react-query"; 
 import toast from "react-hot-toast";
 
 export const useInitPayment = () => {
   return useMutation({
     mutationFn: async (bookingId: string) => {
       // তোমার এন্ডপয়েন্ট অনুযায়ী POST রিকোয়েস্ট
-      const res = await api.post(`/api/payment/init-payment/${bookingId}`);
+      const res = await privateApi.post(`/api/payment/init-payment/${bookingId}`);
       return res.data;
     },
     onSuccess: (data) => {

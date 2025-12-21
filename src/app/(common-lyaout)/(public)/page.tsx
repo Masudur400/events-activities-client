@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Home from "@/components/public/Home/Home";
 
  

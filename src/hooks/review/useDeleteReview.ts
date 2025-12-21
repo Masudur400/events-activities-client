@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import api from '@/lib/axios';
+ 
+import { privateApi } from '@/lib/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';  
 import toast from 'react-hot-toast';
 
@@ -8,7 +9,7 @@ export const useDeleteReview = () => {
 
   return useMutation({
     mutationFn: async (reviewId: string) => {
-      const { data } = await api.delete(`/api/review/${reviewId}`);
+      const { data } = await privateApi.delete(`/api/review/${reviewId}`);
       return data;
     },
     onSuccess: () => {

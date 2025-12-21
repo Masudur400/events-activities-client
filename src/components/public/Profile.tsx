@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { Camera, Home, Pen, Shield, User } from 'lucide-react';
 import { z } from 'zod';
 import Avatar from 'react-avatar';
+import ChangePasswordModal from './auth/ChangePasswordModal';
 
 interface ProfileProps {
   user: IUser;
@@ -80,7 +81,7 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
 
     try {
       setLoading(true);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/update-profile`, {
+      const res = await fetch(`/proxy/api/user/update-profile`, {
         method: 'PATCH',
         body: data,
         credentials: 'include',
@@ -113,7 +114,7 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
         setErrors({ ...errors, bio: '' });
       }
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/update-profile`, {
+      const res = await fetch(`/proxy/api/user/update-profile`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bio: formData.bio }),
@@ -171,7 +172,7 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
   //       phone: formData.phone,
   //       address: formData.address,
   //     };
-  //     const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/update-profile`, {
+  //     const res = await fetch(`/proxy/api/user/update-profile`, {
   //       method: 'PATCH',
   //       headers: { 'Content-Type': 'application/json' },
   //       body: JSON.stringify(payload),
@@ -239,7 +240,7 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
   const toastId = toast.loading('Updating profile info...');
   try {
     setLoading(true);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API}/api/user/update-profile`, {
+    const res = await fetch(`/proxy/api/user/update-profile`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -259,6 +260,9 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
 };
 
 
+const [isPassModalOpen, setIsPassModalOpen] = useState(false);
+
+
   return (
     <div className="flex justify-center mt-10 px-4">
       <div className="w-full max-w-4xl bg-white dark:bg-gray-950 rounded-2xl shadow-lg p-6 border border-yellow-700/40 flex flex-col md:flex-row gap-6">
@@ -271,7 +275,7 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
             <div className='border-4 rounded-full'>
               <Avatar
               src={imagePreview}
-              name={user.name}
+              name={user?.name}
               size='200'
               className="rounded-full"
             />
@@ -371,8 +375,13 @@ const Profile = ({ user, onUpdate }: ProfileProps) => {
           >
             Update Info
           </button>
+          <p onClick={() => setIsPassModalOpen(true)} className='my-2 text-center text-yellow-700/90 hover:text-yellow-600 dark:hover:text-yellow-600/90 dark:text-yellow-600 underline hover:cursor-pointer'>Change Password</p>
         </div>
       </div>
+      <ChangePasswordModal 
+        isOpen={isPassModalOpen} 
+        onClose={() => setIsPassModalOpen(false)} 
+      />
     </div>
   );
 };

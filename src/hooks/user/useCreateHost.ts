@@ -1,12 +1,12 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import api from '@/lib/axios';
+import { privateApi } from '@/lib/axios';
+import { useMutation, useQueryClient } from '@tanstack/react-query'; 
 
 export const useCreateHost = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (formData: FormData) => { 
-      const res = await api.post('/api/user/create-host', formData);
+      const res = await privateApi.post('/api/user/create-host', formData);
       return res.data;
     },
     onSuccess: () => {
