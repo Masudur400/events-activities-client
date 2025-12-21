@@ -48,7 +48,7 @@ An all-in-one platform for discovering, hosting, and booking events. Built with 
 ### Backend
 * **Authentication:** JWT (JSON Web Token)
 * **Payment Gateway:** SSLCommerz
-* **Database:** (Add your database name here, e.g., MongoDB/PostgreSQL)
+* **Database:** (MongoDB, Mongoose)
 
 ---
 
