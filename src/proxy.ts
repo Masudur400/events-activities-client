@@ -2,15 +2,18 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { getCookie } from "@/services/auth/tokenHandlers";
-import { authRoutes, getDefaultDashboardRoute, getRouteOwner, UserRole, publicRoutes } from "./lib/route-utils";
+import { authRoutes, getDefaultDashboardRoute, getRouteOwner, UserRole,isPublicRoute } from "./lib/route-utils";
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   // 1️⃣ Public pages: anyone can access
-  if (publicRoutes.includes(pathname)) {
-    return NextResponse.next();
-  }
+  // if (publicRoutes.includes(pathname)) {
+  //   return NextResponse.next(); 
+  // }
+  if (isPublicRoute(pathname)) {
+  return NextResponse.next();
+}
 
   // 2️⃣ Auth routes (login/register/forgot-password)
   if (authRoutes.includes(pathname)) {
