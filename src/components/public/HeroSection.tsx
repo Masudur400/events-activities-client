@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import banner1 from "../../../public/images/home-banner-4.png";
+import banner1 from "../../../public/images/home-banner-8.png";
 import banner2 from "../../../public/images/home-banner-5.png";
 import banner3 from "../../../public/images/home-banner-6.png";
-import banner4 from "../../../public/images/home-banner-7.png";
+import banner4 from "../../../public/images/home-banner-4.png";
 
 import Link from "next/link";
 
